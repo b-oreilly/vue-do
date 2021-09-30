@@ -13,10 +13,32 @@
         name: 'ToDoList',
         components: {
 
+        },
+        data() {
+            return {
+                list: [{
+                        id: 1,
+                        text: "Clean the house",
+                        done: true
+                    },
+                    {
+                        id: 2,
+                        text: "Walk the dog",
+                        done: false
+                    },
+                    {
+                        id: 3,
+                        text: "Create todo app using Vue",
+                        done: false
+                    }
+                ]
+            }
         }
     }
 </script>
 
-<style scoped>
-
+<style>
+    .container {
+        margin-top: 30px;
+    }
 </style>
