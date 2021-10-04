@@ -22,7 +22,12 @@
             }
         },
         methods: {
-            
+            completeTodo(todo) {
+                this.$emit("complete-todo", todo);
+            },
+            deleteTodo() {
+                this.$emit("delete-todo", this.todo);
+            }
         }
     }
 </script>
@@ -34,5 +39,9 @@
     .list-group-item {
         padding-block: 15px;
     }
-
+    .button {
+        align-content: inherit;
+        padding: 10px;
+    }
+    
 </style>

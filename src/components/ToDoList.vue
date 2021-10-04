@@ -2,7 +2,7 @@
     <div>
         <b-card header="TodoList" header-tag="header">
             <b-list-group>
-                <ToDoItem v-for="item in list" :key="item.id" :todo="item" />
+                <ToDoItem v-on:complete-todo="completeTodo" v-on:delete-todo="deleteTodo" v-for="item in list" :key="item.id" :todo="item" />
             </b-list-group>
             <template v-slot:footer>
                 <input type="text" v-model="todo" v-on:keyup.enter="addNewTodo()" placeholder="Add a Todo" />
@@ -60,6 +60,14 @@
 
                 // Reset todo to an empty string.
                 this.todo = "";
+            },
+            completeTodo(todo) {
+                const todoIndex = this.list.indexOf(todo);
+                this.list[todoIndex].done = true;
+            },
+            deleteTodo() {
+                const todoIndex = this.list.indexOf(this.todo);
+                this.list.splice(todoIndex, 1);
             }
         }
     }
