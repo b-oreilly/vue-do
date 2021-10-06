@@ -2,7 +2,8 @@
     <div>
         <b-card header="TodoList" header-tag="header">
             <b-list-group>
-                <ToDoItem v-on:complete-todo="completeTodo" v-on:delete-todo="deleteTodo" v-for="item in list" :key="item.id" :todo="item" />
+                <ToDoItem v-on:complete-todo="completeTodo" v-on:delete-todo="deleteTodo" v-for="item in list"
+                    :key="item.id" :todo="item" />
             </b-list-group>
             <template v-slot:footer>
                 <input type="text" v-model="todo" v-on:keyup.enter="addNewTodo()" placeholder="Add a Todo" />
@@ -40,6 +41,17 @@
                 ],
                 todoText: ""
             }
+        },
+        mounted() {
+            if (localStorage.list) {
+                this.list = JSON.parse(localStorage.list);
+            }
+        },
+        watch:{
+            list(newTodo) {
+                localStorage.list = JSON.stringify(newTodo);
+            },
+            deep: true
         },
         methods: {
             addNewTodo() {
