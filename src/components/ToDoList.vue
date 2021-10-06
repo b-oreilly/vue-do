@@ -43,15 +43,9 @@
             }
         },
         mounted() {
-            if (localStorage.list) {
-                this.list = JSON.parse(localStorage.list);
+            if (localStorage.getItem("list")) {
+                this.list = JSON.parse(localStorage.getItem("list"));
             }
-        },
-        watch:{
-            list(newTodo) {
-                localStorage.list = JSON.stringify(newTodo);
-            },
-            deep: true
         },
         methods: {
             addNewTodo() {
@@ -70,16 +64,22 @@
                     done: false
                 });
 
-                // Reset todo to an empty string.
+                // Reset todo to an empty string & save to update localStorage.
                 this.todo = "";
+                this.saveTodo();
             },
             completeTodo(todo) {
                 const todoIndex = this.list.indexOf(todo);
                 this.list[todoIndex].done = true;
+                this.saveTodo();
             },
             deleteTodo(todo) {
                 const todoIndex = this.list.indexOf(todo);
                 this.list.splice(todoIndex, 1);
+                this.saveTodo();
+            },
+            saveTodo() {
+                localStorage.setItem("list", JSON.stringify(this.list))
             }
         }
     }
