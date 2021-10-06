@@ -65,8 +65,8 @@
                 const todoIndex = this.list.indexOf(todo);
                 this.list[todoIndex].done = true;
             },
-            deleteTodo() {
-                const todoIndex = this.list.indexOf(this.todo);
+            deleteTodo(todo) {
+                const todoIndex = this.list.indexOf(todo);
                 this.list.splice(todoIndex, 1);
             }
         }
